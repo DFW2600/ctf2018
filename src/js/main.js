@@ -31,12 +31,11 @@ function setArt() {
 
 // Render()
 
-require(libs, function($, audiojs, audiojsInstance, ) {
+require(libs, function($, audiojs, audiojsInstance) {
 
   $(document).ready(function() {
+    audiojs.createAll();
     setArt();
   });
-
-  audiojs.createAll();
 
 });
