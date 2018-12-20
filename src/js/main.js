@@ -1,3 +1,8 @@
+// ============================================================================
+// main.js - entrypoint
+// ============================================================================
+
+// defaults paths
 requirejs.config({
     paths: {
 	'jquery': 'jquery.min',
@@ -10,32 +15,28 @@ requirejs.config({
     }
 });
 
-var libs = [
-    "jquery",
-    "audio",
-    "escapes"
-];
+require(["jquery", "audio", "escapes"], function($, audiojs, audiojsInstance) {
 
-var ansi = [ "/art/xmassanta.ans", "/art/xmastree.ans"];
+  // Constants
+  var ansi = [ "/art/xmassanta.ans", "/art/xmastree.ans"];
 
-function randomArt() {
-    return ansi[Math.floor(Math.random() * ansi.length)];
-}
+  // Helpers()
+  function setArt(index) {
 
-function setArt() {
-    escapes(randomArt(), function () {
+    if (!index)
+      index = Math.floor(Math.random() * ansi.length);
+
+    escapes(ansi[index], function () {
       $(this).appendTo('#art');
-      $("#art").fadeIn(250);
+      $("#art").fadeIn(150);
     });
-}
 
-// Render()
+  }
 
-require(libs, function($, audiojs, audiojsInstance) {
-
+  // Render()
   $(document).ready(function() {
-    audiojs.createAll();
     setArt();
+    audiojs.createAll();
   });
 
 });
