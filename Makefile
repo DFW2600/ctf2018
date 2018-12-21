@@ -1,36 +1,43 @@
-#!/usr/bin/make
+#!/usr/bin/make -k-
+################################################################################
+VIRTUAL_HOST	:= xmas2018.testnet.dapla.net
+PORT		:= 8043
 ################################################################################
 STACK		:= $(shell basename "$$(pwd)")
-VIRTUAL_HOST	:= xmas2018.testnet.dapla.net
-
-export STACK
-################################################################################
 
 define DOCKERFILE
+FROM node:latest AS BUILD
+ADD ./src/frontend /src
+WORKDIR .
+RUN npm install && npm run test
+
 FROM pierrezemb/gostatic:latest
-EXPOSE 8043
-ADD src/ /srv/http
+COPY --from BUILD /src /svc/http
+EXPOSE $(PORT)
 endef
 export DOCKERFILE
-
 
 define DOCKER_COMPOSE
 ---
 version: '3.6'
 services:
   xmas:
-    image: "${STACK}:latest"
+    image: "$(STACK):latest"
     ports:
-      - "8043/tcp"
+      - "$(PORT)/tcp"
     deploy:
       labels:
+        traefik.port: 8043
         traefik.network: "public"
         traefik.enabled: 'true'
-        traefik.port: 8043
+        traefik.frontend.priority: "10"
         traefik.frontend.rules: 'Host: $(VIRTUAL_HOST)'
       replicas: 1
+      restart_policy:
+        condition: on-failure
     networks:
       - public
+
 networks:
   public:
     external: true
@@ -41,34 +48,35 @@ export DOCKER_COMPOSE
 
 #===============================================================================
 
-.PHONEY: all clean image network display
 .DEFAULT: all
+.PHONY: all clean image network display
 
-all: clean image deploy
+all: deploy test
+
+test:
+	@curl -SsILk -XHEAD $(VIRTUAL_HOST)
 
 clean:
-	@-docker stack rm $(STACK)
-	@-docker image ls | awk '/$(STACK)/ { system("docker image rm "$1":latest") }'
+	@docker stack rm $(STACK)
 
 distclean: clean
+	@-docker image rm $(STACK):latest
 	@-docker volume ls | awk '/$(STACK)/ { system("docker volume rm "$2) }'
 	@-rm Dockerfile docker-compose.yml
 
 network:
 	@-docker network create -d overlay --scope swarm $(NETWORK)
 
-image: Dockerfile
-	@docker build -t $(STACK):latest $(shell dirname $<)
+image:
+	@echo "$$DOCKERFILE" | docker image build -t $(STACK):latest -
 
-deploy: docker-compose.yml
-	@docker stack deploy -c $< $(STACK)
+deploy: image
+	@echo "$$DOCKER_COMPOSE" | docker stack deploy -c $< $(STACK) -
 
 #===============================================================================
 
-docker-compose.yml: export DOCKER_COMPOSE:=$(DOCKER_COMPOSE)
 docker-compose.yml:
-	@echo "$${DOCKER_COMPOSE}" > $@
+	@echo "$$DOCKER_COMPOSE" > $@
 
-Dockerfile: export DOCKERFILE:=$(DOCKERFILE)
 Dockerfile:
-	@echo "$${DOCKERFILE}" > $@
+	@echo "$$DOCKERFILE" > $@
