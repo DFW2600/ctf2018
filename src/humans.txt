@@ -1,0 +1,49 @@
+
+* TEAM */
+                            
+Your title: Santa Klaus Toys, Inc.
+                            
+Site: elves@northpole.dallasmakerspace.org
+
+							
+/* THANKS */
+
+                                                                          
+    .sssssssssssssssssss`    -ss-       -sssss.  ss+  :sssssssssssssssssso     
+    :MMmdddddddddddddNMM`  --oMM/  -----+ddNMM/--dds  oMMmdddddddddddddMMm     
+    :MMo             yMM` .MMMMM/  mMMMMy  sMMMMN     oMM:             NMm     
+    :MMo  sddddddd+  yMM`  --oMMmddMMN--.  sMMMMMdds  oMM:  dddddddd:  NMm     
+    :MMo  hMMMMMMMs  yMM` `++yMMdssNMN     /ssNMMMMh  oMM:  NMMMMMMM/  NMm     
+    :MMo  hMMMMMMMs  yMM` .NNNNN+``dNm``````  hNNMMh  oMM:  NMMMMMMM/  NMm     
+    :MMo  hMMMMMMMs  yMM`  `````sNN-`.NNNNN+  ```MMh  oMM:  NMMMMMMM/  NMm     
+    :MMo  :+++++++-  yMM` `ss/  yMM.  ++sMMdsssss++:  oMM:  /+++++++.  NMm     
+    :MMy-------------dMM` .MMy  yMM.  --+ddmMMddh---  oMM+-------------NMm     
+    :MMMNNNNNNNNNNNNNMMM` .MMy  yMM. `NNy``sMM:``NNh  oMMMNNNNNNNNNNNNNMMm     
+    `-------------------   --.  .--  `MMNddo--yddMMh  `------------------.     
+    `+++++++++++++-  :+++++++++++++` `MMmsso++ssssss++-  :++  `++-  :++`       
+    :MMMMMNmmMMMMMs  smmmmmmmNMMNmm. `mms  omm-  ../MMo  hMM` -MMs  smm`       
+    :MMMMM/..MMMMMs  `.......+MM+..   ..`  `..   mmNMMo  hMM` -MMs  `..        
+    :MMh++.  MMMMMmsssssssssshMM/  ossss+     osyMMm++ossmMM` `++-  +sssso     
+    -dd/  .--hddddmMMmdddddddmMMo--mMMddo  .--yddMMd--oddNMM`       oddMMm     
+          hMM`    +MM/```    +MMMNNMMN     oNN- `MMMNNo``hMM`       ```mMm     
+          hMM     `--sdd`    /MMo--mMN     .--`  -----odd/--ddddddddddd:--     
+    `+++++mMM++:     +ss` `++yMMy++sss++++++++`  ++:  :ss+++sssssssssss`       
+    :MMNmmmmmMMm..`  `....-mmmmmmmm. `mmNMMMMM:..mmy  `..ymm..`  `........     
+    :MMs.....MMMmmo  smmmmd........   ..+MMMMMNmm..`  +mm/..mmh  /mmmmmmmd     
+    :MMo     MMm++osso++++/  -sssss` `sshMMy+++++ss+  oMMhss++/  .+++++++/     
+    :MMo  .--MMd  /dd+--     :ddNMM. `MMNddo-----MMd--sMMMMM--.  `-------.     
+    -NNo  hNNNNd     yNN`  ``   yMM. `NNy  oNNNNNMMMNNNNNNNNMMd``+MMMNNNNm     
+    `--.  ------     .--  `ddo  yMM.  --.  .----:MMd--------MMNddmMMo-----     
+    `+++++++++++++++++++` .MMd++oss+++++:        MMh  -++.  NMNssdMMs++++/     
+    :MMNNNNNNNNNNNNNNMMM` .NNNNN+``mMMNNy  ```   MMh  +NN-  NMd  /NNNNNNNd     
+    :MMs`````````````hMM`  `````sNNMMN```  oNN-  MMh  ```   NMd  `````````     
+    :MMo  +sssssss/  yMM` `ss/  yMMMMN     -++ssyMMNssssssssMMNss/     sso     
+    :MMo  hMMMMMMMs  yMM` .MMy  yMMmdd--------yddddmMMMMMMMMMMNdd+  .--NMm     
+    :MMo  hMMMMMMMs  yMM` .MMy``yMM. `NNMMMMMM-    :MMMNNMMMMNd     yNNMMm     
+    :MMo  hMMMMMMMs  yMM` .MMNddNMM.  --oMMMMM-    :MMy--dMM:--     .--NMm     
+    :MMo  +sssssss/  yMM` .MMmssmMM.  ++sMMdss++++++sso++sss           NMm     
+    :MMo`````````````hMM` .MMy  yMM. `MMMNN+``dNNNNh  oNN:`````````````NMm     
+    :MMMNNNNNNNNNNNNNMMM` .MMy  yMM. `MMh``sNN-````    ``hNNNNNNNNNNNNNMMm     
+    `+++++++++++++++++++` `++:  -++`  ++:  -++`          :+++++++++++++++/  
+
+
