@@ -2,18 +2,21 @@
 version: '3.6'
 services:
   xmas:
-    image: "${STACK}:latest"
+    image: "dmsctf2018:latest"
     ports:
       - "8043/tcp"
     deploy:
       labels:
+        traefik.port: 8043
         traefik.network: "public"
         traefik.enabled: 'true'
-        traefik.port: 8043
+        traefik.frontend.priority: "10"
         traefik.frontend.rules: 'Host: xmas2018.testnet.dapla.net'
       replicas: 1
+      restart_policy:
+        condition: on-failure
     networks:
-      - public
+      public: {}
 
 networks:
   public:
