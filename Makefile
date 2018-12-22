@@ -1,10 +1,11 @@
 #!/usr/bin/make -k-
 ################################################################################
-VIRTUAL_HOST	:= xmas2018.testnet.dapla.net
+VIRTUAL_HOST	:= northpole.dallasmakerspace.org
 PORT		:= 8043
 VOLUME		:= /$(shell pwd)://src
 NODE_VERSION	:= latest
 NETWORK		:= public
+IMAGE		:= dallasmakerspace/ctf2018:latest
 ################################################################################
 STACK		:= $(shell basename "$$(pwd)")
 npm		:= docker run -v $(VOLUME) -w //src -ti --rm node:$(NODE_VERSION) npm
@@ -32,17 +33,24 @@ define DOCKER_COMPOSE
 version: '3.6'
 services:
   xmas:
-    image: "$(STACK):latest"
+    image: "$(IMAGE)"
     ports:
       - "$(PORT)/tcp"
     deploy:
       labels:
-        traefik.port: 8043
-        traefik.network: "$(NETWORK)"
+        orbiter.down: '3'
+        orbiter.up: '6'
+        orbiter: 'true'
+        traefik.backend: 'northpole'
+        traefik.default.protocol: 'http'
         traefik.enabled: 'true'
-        traefik.frontend.priority: "10"
-        traefik.frontend.rules: 'Host: $(VIRTUAL_HOST)'
-      replicas: 1
+        traefik.frontend.entryPoints: 'http, https'
+        traefik.frontend.priority: '10'
+        traefik.frontend.rule: 'Host:$(VIRTUAL_HOST)'
+        traefik.network: "$(NETWORK)"
+        traefik.docker.network: '$(NETWORK)'
+        traefik.port: 8043
+      replicas: 3
       restart_policy:
         condition: on-failure
     networks:
@@ -62,6 +70,9 @@ export DOCKER_COMPOSE
 .PHONY: all clean image network display depends
 
 all: deploy test
+
+dist: Dockerfile docker-compose.yml
+	@git commit -am '(chore) latest automated release'
 
 test:
 	@curl -SsILk -XHEAD $(VIRTUAL_HOST)
