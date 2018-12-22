@@ -8,7 +8,6 @@ requirejs.config({
 	'jquery': 'jquery.min',
         'escapes': 'escapes.min',
         'audio': 'audio.min',
-        'snowflakes': 'snowflakes.min.js'
     }, 
     shim: {
 	'escapes': { deps: ['jquery'] },
@@ -16,7 +15,7 @@ requirejs.config({
     }
 });
 
-require(["jquery", "audio", "escapes", "snowflakes"], function($, audiojs, audiojsInstance, SnowFlakes) {
+require(["jquery", "audio", "escapes"], function($, audiojs, audiojsInstance) {
 
   // Constants
   var ansi = [ "/art/xmassanta.ans", "/art/xmastree.ans"];
@@ -38,7 +37,6 @@ require(["jquery", "audio", "escapes", "snowflakes"], function($, audiojs, audio
   $(document).ready(function() {
     setArt();
     audiojs.createAll();
-    var snow = new SnowFlakes({ color: '#ececef' });
   });
 
 });
