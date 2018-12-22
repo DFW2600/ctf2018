@@ -2,7 +2,7 @@
 version: '3.6'
 services:
   xmas:
-    image: "dmsctf2018:latest"
+    image: "dallasmakerspace/ctf2018:latest"
     ports:
       - "8043/tcp"
     deploy:
@@ -11,7 +11,7 @@ services:
         traefik.network: "public"
         traefik.enabled: 'true'
         traefik.frontend.priority: "10"
-        traefik.frontend.rules: 'Host: xmas2018.testnet.dapla.net'
+        traefik.frontend.rules: 'Host: northpole.dallasmakerspace.org'
       replicas: 1
       restart_policy:
         condition: on-failure
