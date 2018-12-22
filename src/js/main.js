@@ -8,7 +8,7 @@ requirejs.config({
 	'jquery': 'jquery.min',
         'escapes': 'escapes.min',
         'audio': 'audio.min',
-        'snowflakes': 'https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"
+        'snowflakes': 'snowflakes.min.js'
     }, 
     shim: {
 	'escapes': { deps: ['jquery'] },
@@ -16,7 +16,7 @@ requirejs.config({
     }
 });
 
-require(["jquery", "audio", "escapes", 'snowflakes'], function($, audiojs, audiojsInstance, Snowflakes) {
+require(["jquery", "audio", "escapes", "snowflakes"], function($, audiojs, audiojsInstance, SnowFlakes) {
 
   // Constants
   var ansi = [ "/art/xmassanta.ans", "/art/xmastree.ans"];
@@ -36,9 +36,9 @@ require(["jquery", "audio", "escapes", 'snowflakes'], function($, audiojs, audio
 
   // Render()
   $(document).ready(function() {
-    var snow = new Snowflakes({ color: '#f3f3fc' });
     setArt();
     audiojs.createAll();
+    var snow = new SnowFlakes({ color: '#ececef' });
   });
 
 });

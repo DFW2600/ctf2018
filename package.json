@@ -1,0 +1,8 @@
+{
+  "name": "dms ctf 2018",
+  "description": "VCC CTF",
+  "version": "1.0.0",
+  "scripts": {
+      "test": "exit 0"
+  }
+}

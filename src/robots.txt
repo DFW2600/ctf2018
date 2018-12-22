@@ -1,3 +1,5 @@
+Sitemap: /sitemap.xml
+# flag{NaughtyBoy}
 User-Agent: *
 Disallow: /js
 Disallow: /img
