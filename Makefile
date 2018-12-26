@@ -2,13 +2,17 @@
 ################################################################################
 VIRTUAL_HOST	:= northpole.dallasmakerspace.org
 PORT		:= 8043
-VOLUME		:= /$(shell pwd)://src
 NODE_VERSION	:= latest
+DOCKERHUB_USER	:= dallasmakerspace
 NETWORK		:= public
-IMAGE		:= dallasmakerspace/ctf2018:latest
 ################################################################################
 STACK		:= $(shell basename "$$(pwd)")
+VOLUME		:= /$(shell pwd)://src
+IMAGE_VERSION	:= $(shell git tag || echo "latest")
+IMAGE		:= $(DOCKERHUB_USER)/$(STACK):$(IMAGE_VERSION)
+#==============================================================================
 npm		:= docker run -v $(VOLUME) -w //src -ti --rm node:$(NODE_VERSION) npm
+word-dot	:= $(word $2,$(subst ., , $1))
 
 define BUILD_DOCKERFILE
 FROM node:latest AS builder
@@ -41,7 +45,7 @@ services:
         orbiter.down: '3'
         orbiter.up: '6'
         orbiter: 'true'
-        traefik.backend: 'northpole'
+        traefik.backend: '$(call word-dot,$(VIRTUAL_HOST),1)'
         traefik.default.protocol: 'http'
         traefik.enabled: 'true'
         traefik.frontend.entryPoints: 'http, https'
@@ -88,12 +92,12 @@ distclean: clean
 	@-docker image prune -f
 	@-rm -f Dockerfile docker-compose.yml
 
-deploy: depends
+deploy: docker-compose.yml depends
 	@echo "$$DOCKER_COMPOSE" | docker stack deploy -c- $(STACK)
 
 #depends: package.json network image
 depends: network image
-	#@$(call npm,install)
+	@$(call npm) install
 
 network:
 	@-docker network create -d overlay --scope swarm $(NETWORK)
