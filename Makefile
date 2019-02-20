@@ -12,7 +12,6 @@ IMAGE_VERSION	:= $(shell git tag || echo "latest")
 IMAGE		:= $(DOCKERHUB_USER)/$(STACK):$(IMAGE_VERSION)
 #==============================================================================
 npm		:= docker run -v $(VOLUME) -w //src -ti --rm node:$(NODE_VERSION) npm
-word-dot	:= $(word $2,$(subst ., , $1))
 
 define BUILD_DOCKERFILE
 FROM node:latest AS builder
@@ -36,7 +35,7 @@ define DOCKER_COMPOSE
 ---
 version: '3.6'
 services:
-  xmas:
+  web:
     image: "$(IMAGE)"
     ports:
       - "$(PORT)/tcp"
@@ -45,7 +44,7 @@ services:
         orbiter.down: '3'
         orbiter.up: '6'
         orbiter: 'true'
-        traefik.backend: '$(call word-dot,$(VIRTUAL_HOST),1)'
+        traefik.backend: '$(word 1,$(subst ".", , $(VIRTUAL_HOST)))'
         traefik.default.protocol: 'http'
         traefik.enabled: 'true'
         traefik.frontend.entryPoints: 'http, https'
