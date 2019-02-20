@@ -1,0 +1,12 @@
+{
+  "name": "DMS Radio",
+  "short_name": "dms-radio",
+  "theme_color": "#c70060",
+  "background_color": "#000000",
+  "display": "standalone",
+  "orientation": "portrait",
+  "Scope": "/",
+  "start_url": "/",
+  "icons": null,
+  "splash_pages": null
+}
