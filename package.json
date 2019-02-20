@@ -1,6 +1,6 @@
 {
-  "name": "dms ctf 2018",
-  "description": "VCC CTF",
+  "name": "public radio",
+  "description": "Public Radio station",
   "version": "1.0.0",
   "scripts": {
       "test": "exit 0"

@@ -1,3 +1,5 @@
+'use strict';
+
 // ============================================================================
 // main.js - entrypoint
 // ============================================================================
@@ -5,38 +7,21 @@
 // defaults paths
 requirejs.config({
     paths: {
-	'jquery': 'jquery.min',
+        'jquery': 'jquery.min',
         'escapes': 'escapes.min',
         'audio': 'audio.min',
     }, 
     shim: {
-	'escapes': { deps: ['jquery'] },
-	'audio': { exports: 'audiojs' },
+        'audio': { exports: 'audiojs' },
+        'escapes': { deps: ['jquery'] },
+        'app': { deps: ['domReady', 'escapes', 'audio'] },
     }
 });
 
-require(["jquery", "audio", "escapes"], function($, audiojs, audiojsInstance) {
+requirejs(['app'], (App) => {
 
-  // Constants
-  var ansi = [ "/art/xmassanta.ans", "/art/xmastree.ans"];
-
-  // Helpers()
-  function setArt(index) {
-
-    if (!index)
-      index = Math.floor(Math.random() * ansi.length);
-
-    escapes(ansi[index], function () {
-      $(this).appendTo('#art');
-      $("#art").fadeIn(150);
-    });
-
-  }
-
-  // Render()
-  $(document).ready(function() {
-    setArt();
-    audiojs.createAll();
-  });
+  // Render App
+  const app = new App;
+        app.bind();
 
 });

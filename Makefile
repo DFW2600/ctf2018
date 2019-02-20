@@ -6,6 +6,7 @@ VOLUME		:= /$(shell pwd)://src
 NODE_VERSION	:= latest
 NETWORK		:= public
 IMAGE		:= dallasmakerspace/ctf2018:latest
+REPLICAS	:= 3
 ################################################################################
 STACK		:= $(shell basename "$$(pwd)")
 npm		:= docker run -v $(VOLUME) -w //src -ti --rm node:$(NODE_VERSION) npm
@@ -50,7 +51,7 @@ services:
         traefik.network: "$(NETWORK)"
         traefik.docker.network: '$(NETWORK)'
         traefik.port: 8043
-      replicas: 3
+      replicas: $(REPLICAS)
       restart_policy:
         condition: on-failure
     networks:

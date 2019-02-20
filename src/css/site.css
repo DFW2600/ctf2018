@@ -1,7 +1,6 @@
-html, body { margin: 0; padding: 0; text-align: center; height: 100%; }
+html, body { margin: 0; padding: 0; text-align: center; height: 100%; background-color: black; }
 body {
 	font-family: 'Press Start 2P', "Lucida Console", Monaco, monospace;
-	background-color: black; 
 	color: #ffffff;
 }
 a { color:#409070; }
@@ -32,6 +31,7 @@ display: inline-block;
 	width: 460px;
 	position: absolute;
 	left: -1000px;
+	display: none;
 }
 ol {
 	padding: 0px;
