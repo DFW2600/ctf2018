@@ -1,17 +1,16 @@
-'use strict';
-
 define('App', [
   'domReady',
   'jquery',
-  'excapes',
   'audio',
-], (domReady, $, escapes, audiojs, audiojsInstance) => {
+  'escapes',
+], (domReady, $, audiojs, audiojsInstance) => {
 
-  return class App {
 
-    constructor() {
+  class App {
 
-      this.props = { 
+    constructor(props) {
+
+      this.props = props || { 
         ansi: [ "art/CCCFIRE-V_FOR_VENDETTA.ANS" ],
         audio: null,
         element: 'body',
@@ -21,21 +20,28 @@ define('App', [
         index: (val) => (!val) ? Math.floor(Math.random() * this.props.ansi.length)
             		       : val % this.props.ansi.length
       };
+
+      this.bind();
+      domReady(() => this.render());
+
     }
 
     bind(element) {
-      if (element) this.props.element = document.queryselector(element);
-
+      this.props.element = document.querySelector((element) ? element : "#art");
       this.props['audio'] = audiojs.createAll();
-      this.stateListener = this.render
+      //this.stateListener = this.render
     }
 
     render() {
-      let self = this;
 
-      domReady(() => {
-         escapes(ansi[self.state['index']], () => { $(self.props['element']).appendTo('#art'); $('#art').fadeIn(150); });
-      });
+      escapes(this.props.ansi[this.state['index']()], function() {
+	$(this).appendTo('#art');
+	$('#art').fadeIn(150);
+      })
+
     }
+
   }
+
+  return App;
 });

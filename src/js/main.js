@@ -7,21 +7,23 @@
 // defaults paths
 requirejs.config({
     paths: {
-        'jquery': 'jquery.min',
-        'escapes': 'escapes.min',
-        'audio': 'audio.min',
+	'domReady': 'vendor/domReady',
+        'jquery': 'vendor/jquery.min',
+        'escapes': 'vendor/escapes.min',
+        'audio': 'vendor/audio.min',
+	'snowflakes': 'vendor/snowflakes.min',
+	'App': 'app',
     }, 
     shim: {
+	'App': { exports: 'App' },
         'audio': { exports: 'audiojs' },
         'escapes': { deps: ['jquery'] },
-        'app': { deps: ['domReady', 'escapes', 'audio'] },
     }
 });
 
-requirejs(['app'], (App) => {
+requirejs(['App'], (App) => {
 
   // Render App
-  const app = new App;
-        app.bind();
+  const app = new App();
 
 });
